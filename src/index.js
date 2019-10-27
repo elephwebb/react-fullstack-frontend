@@ -1,8 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+
 import App from './components/App';
 
+/**
+ * Basic Redux Store with a dummy Reducer with an array and empty object {} as Action
+ * @type {Store<Array, Action> & Store<S & StateExt, A> & Ext}
+ */
+const store = createStore(() => [], {}, applyMiddleware());
+
+/**
+ * Create a Provider Tag that makes accesible the Redux Store to the whole application
+ * The Redux stores the state of components registered to the Redux Store
+ * We receive a App Component as child of the Provider Tag
+ * Provider will be in charge of notify to all its child components in case a new state is available
+ */
 ReactDOM.render(
-    <App />,
+    <Provider store={store}><App /></Provider>,
     document.querySelector('#root')
 );
