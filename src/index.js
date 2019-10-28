@@ -4,12 +4,13 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 
 import App from './components/App';
+import reducers from './reducers';
 
 /**
  * Basic Redux Store with a dummy Reducer with an array and empty object {} as Action
  * @type {Store<Array, Action> & Store<S & StateExt, A> & Ext}
  */
-const store = createStore(() => [], {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware());
 
 /**
  * Create a Provider Tag that makes accesible the Redux Store to the whole application
